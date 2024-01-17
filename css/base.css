@@ -1,0 +1,39 @@
+@import './nav.css';
+@import './animation.css';
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+main {
+    width: 60vw;
+    display: block;
+    margin: 0 auto;
+
+   /* & img {
+        height: auto;
+        width: 100%;
+    }  */
+}
+
+.content { 
+    position: relative; 
+    width: 50vw;
+}
+
+.menu {
+    margin: 20px 40px;
+    position: fixed;
+    right: 0;
+    width: 25vw;
+    display: flex;
+    justify-content: space-between;
+
+    & .menu-item { list-style-type: none; }
+    & .menu-item > a { text-decoration: none; }
+}
+
+.menu-item, .nav-item {
+    border-top: 1px solid black; 
+}

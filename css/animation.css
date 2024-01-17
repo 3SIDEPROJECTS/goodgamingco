@@ -1,0 +1,31 @@
+@keyframes services {
+    to {
+        background-color: black;
+    }
+}
+
+.to-services { animation: services 1s linear forwards; }
+
+@keyframes booking {
+    to { background-color: green; }
+}
+
+.to-booking { animation: booking 1s linear forwards; }
+
+@keyframes community {
+    to { background-color: red; }
+}
+
+.to-community { animation: community 1s linear forwards; }
+
+@keyframes faq {
+    to { background-color: blue; }
+}
+
+.to-faq { animation: faq 1s linear forwards; }
+
+@keyframes logo-fade {
+    to { opacity: 0; }
+}
+
+.fade-out { animation: logo-fade 0.5s linear forwards; }

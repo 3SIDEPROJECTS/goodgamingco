@@ -1,0 +1,30 @@
+nav {
+    height: 10vh;
+}
+
+.nav {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 5vw auto;
+}
+
+.nav-items {
+    padding: 0 20vw;
+    margin: 0;
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    
+}
+
+.nav-item {
+    width: auto;
+    padding-top: 5px;
+    position: relative;
+    display: block;
+
+    & a { text-decoration: none; }
+}
