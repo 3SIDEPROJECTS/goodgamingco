@@ -1,16 +1,22 @@
 // source: https://www.smashingmagazine.com/2016/07/improving-user-flow-through-page-transitions/
     //grab the main element
-    const main = document.getElementsByTagName('main')[0]
-    const page = {
-        '/': { bgcolor: 'white' },
-        '/services': { bgcolor: 'black', color: 'white'},
-        '/booking': { bgcolor: 'green' },
-        '/community': { bgcolor: 'red' },
-        '/about': { bgcolor: 'yellow' },
-        '/contact': { bgcolor: 'blue' },
-        '/faqs': { bgcolor: 'white' }
+    const main = document.getElementsByTagName('main')[0],
+    imgs = document.getElementsByClassName('logo')
+    console.log( imgs )
+    let state = {
+        bgColor: document.body.style.backgroundColor,
+        color: document.body.style.color
     }
-    console.log( main )
+
+    const page = {
+        '/': { id: 'logo', bgColor: 'white', color: 'black' },
+        '/services': { id: 'l1', bgColor: 'black', color: 'white'},
+        '/booking': { id: 'l2', bgColor: '#009444', color: 'black' },
+        '/community': { id: 'l3', bgColor: '#ED1C24', color: 'black' },
+        '/about': { id: 'l4', bgColor: '#FFF200', color: 'black' },
+        '/contact': { id: 'l5', bgColor: '#2B3990', color: 'white' },
+        '/faqs': { id: 'logo', bgColor: 'white', color: 'black' }
+    }
 
     function loadPage(url) {
         return fetch( url, {
@@ -34,27 +40,44 @@
 
     function animate( oldContent, newContent, path ) {
         oldContent.style.position = 'absolute'
-        console.log( document.body.style.backgroundColor )
-
-        let fadeout = oldContent.animate( {
-            opacity: [1, 0]
-        }, { fill: 'forwards', duration: 250} )
+        console.log( document.body.style )
         
-        fadeout.onfinish = function() {
-            main.appendChild(newContent)
-            document.body.animate({
-                backgroundColor: [ document.body.style.backgroundColor, page[path].bgcolor ]
-            }, { fill: 'forwards', duration: 750} )
-
-            let fadein = newContent.animate({
-                opacity: [0, 1]
-            }, 750)
-            
-            fadein.onfinish = function() {
-                oldContent.parentNode.removeChild(oldContent)
-            }
+        for( let img of imgs ) {
+            if( img.id != page[path].id ) { img.style.visibility = 'hidden'}
         }
+
+        window.setTimeout( () => {
+            let fadeout = oldContent.animate( {
+                opacity: [1, 0]
+            }, { fill: 'forwards', duration: 150} )
+
+            fadeout.onfinish = function() {
+                main.appendChild(newContent)
+                console.log(`before: ${state.bgColor} ${state.color}`)
+                document.body.animate({
+                    backgroundColor: [ state.bgColor, page[path].bgColor ]
+                }, { fill: 'forwards', duration: 750} )
+                state.bgColor = page[path].bgColor
+                
+                document.body.animate( {
+                    color: [state.color, page[path].color ],
+                    borderColor: [state.color, page[path].color]
+                }, { fill: 'forwards', duration: 500 })
+                state.color = page[path].color
+
+                let fadein = newContent.animate({
+                    opacity: [0, 1]
+                }, 500)
+                
+                fadein.onfinish = function() {
+                    console.log(`after: ${state.bgColor} ${state.color}`)
+                    oldContent.parentNode.removeChild(oldContent)
+                }
+            }
+        }, 250)
     }
+
+
 
     //window and document event handlers
     window.addEventListener('popstate', changePage)

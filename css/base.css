@@ -3,7 +3,6 @@
 
 body {
     margin: 0;
-    background-color: white;
 }
 
 main {
@@ -11,10 +10,15 @@ main {
     display: block;
     margin: 0 auto;
 
-   /* & img {
+   & img {
         height: auto;
         width: 100%;
-    }  */
+     } 
+}
+
+.logo { 
+    position: absolute; 
+    top: 0;
 }
 
 .content { 
@@ -34,6 +38,19 @@ main {
     & .menu-item > a { text-decoration: none; }
 }
 
-.menu-item, .nav-item {
-    border-top: 1px solid black; 
+.menu-item a, .nav-item a {
+    color: inherit;
+    padding: 0.5px;
+    border-top: 1.5px solid;
 }
+
+a::visited {
+    color: initial;
+}
+
+#l5 { z-index: 1; }
+#l4 { z-index: 2; }
+#l3 { z-index: 3; }
+#l2 { z-index: 4; }
+#l1 { z-index: 5; }
+#logo { z-index: 6; }
