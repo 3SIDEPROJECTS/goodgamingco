@@ -34,7 +34,7 @@
         
             let oldContent = main.querySelector('.content'),
             newContent = wrapper.querySelector('.content')
-            animate( oldContent, newContent, path.replace('/goodgamingco', '')
+            animate( oldContent, newContent, path.replace('/goodgamingco', ''))
         })        
     }
 
